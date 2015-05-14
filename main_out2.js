@@ -18,12 +18,14 @@
                     return
                 }
             }
+			console.log("a"+a.clientX)
             g_mouseX = a.clientX;
             g_mouseY = a.clientY;
             updateMouseCoordinates();
             sendMouseCoords()
         };
         g_canvasElem.onmousemove = function (a) {
+			console.log(a.clientX+" "+a.clientY);
             g_mouseX = a.clientX;
             g_mouseY = a.clientY;
             updateMouseCoordinates()
@@ -97,11 +99,11 @@
 		
         a && a != G && (G = a, ca())
     }
-    function na() {
+    function onMessageReceived() {
         console.log("Find " + G + H);
 		console.log("my ");
         q.ajax("http://m.agar.io/", {error: function () {
-                setTimeout(na, 1E3)
+                setTimeout(onMessageReceived, 1E3)
             }, success: function (a) {
 				console.log("ws://" + a[0]);
 				console.log(a);
@@ -110,7 +112,7 @@
             }, dataType: "text", method: "POST", cache: !1, crossDomain: !0, data: G + H || "?"})
     }
     function ca() {
-        G && (q("#connecting").show(), na())
+        G && (q("#connecting").show(), onMessageReceived())
     }
     function connectTo(a) {
         h && (h.onopen = null, h.onmessage = null, h.onclose = null, h.close(), h = null);
