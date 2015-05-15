@@ -1,4 +1,9 @@
+function test(){
+	alert('hello from my script)');
+}
+
 (function (win, q) {
+	console.log('start body');
     function init() {
         getRegionsInfo();
         setInterval(getRegionsInfo, 18E4);
@@ -6,7 +11,7 @@
 		setInterval выполняет код много раз, 
 		через равные промежутки времени, пока не будет остановлен при помощи clearInterval.
 		*/
-		//alert("test");
+		console.log('init body');
         g_canvasElem = $ = document.getElementById("canvas");
         d = g_canvasElem.getContext("2d");
         g_canvasElem.onmousedown = function (a) {
@@ -25,7 +30,7 @@
             sendMouseCoords()
         };
         g_canvasElem.onmousemove = function (a) {
-			console.log(a.clientX+" "+a.clientY);
+			//console.log(a.clientX+" "+a.clientY);
             g_mouseX = a.clientX;
             g_mouseY = a.clientY;
             updateMouseCoordinates()
@@ -96,7 +101,7 @@
         q("#overlays").hide()
     }
     function setRegion(a) {
-		
+		console.log('msetRegion');
         a && a != G && (G = a, ca())
     }
     function onMessageReceived() {
@@ -410,11 +415,12 @@
         e && (this._strokeColor = e)
     }
 	//проверка где запускается скрипт
+	
     if ("agar.io" != win.location.hostname && "localhost" != win.location.hostname && "10.10.2.13" != win.location.hostname)
         win.location = "http://agar.io/";
     else if (win.top != win)
         win.top.location = "http://agar.io/";
-    else {
+    else{
         var $, d, g_canvasElem, l, r, F = null, h = null, s = 0, t = 0, B = [], m = [], w = {}, p = [], C = [], y = [], g_mouseX = 0, g_mouseY = 0, P = -1, Q = -1, Da = 0, D = 0, L = null, S = 0, T = 0, U = 1E4, V = 1E4, k = 1, G = null, ua = !0, Y = !0, ga = !1, da = !1, M = 0, ea = !1, va = !1, I = s = ~~((S + U) / 2), J = t = ~~((T + V) / 2), K = 1, H = "", u = null, Ga = ["#333333", "#FF3333", "#33FF33", "#3333FF"], isMobile = "ontouchstart"in win && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), fa = new Image;
         fa.src = "img/split.png";
         var R = null;
@@ -619,6 +625,6 @@
                 }
                 return this._canvas
             }};
-        win.onload = init
+        win.onload = init;
     }
 })(window, jQuery);
